@@ -4856,9 +4856,27 @@ void OperateLazStand(int pnum, int i)
 	}
 }
 
+bool objectIsDisabled(int i)
+{
+	if (!sgOptions.Gameplay.bDisableCripplingShrines)
+		return false;
+	if ((object[i]._otype == OBJ_GOATSHRINE) || (object[i]._otype == OBJ_CAULDRON))
+		return true;
+	if ((object[i]._otype != OBJ_SHRINEL) && (object[i]._otype != OBJ_SHRINER))
+		return false;
+	if ((object[i]._oVar1 == SHRINE_FASCINATING) ||
+	    (object[i]._oVar1 == SHRINE_ORNATE) ||
+	    (object[i]._oVar1 == SHRINE_SACRED))
+		return true;
+	return false;
+}
+
 void OperateObject(int pnum, int i, bool TeleFlag)
 {
 	bool sendmsg;
+
+	if (objectIsDisabled(i))
+		return;
 
 	sendmsg = (pnum == myplr);
 	switch (object[i]._otype) {
@@ -5617,6 +5635,11 @@ void GetObjectStr(int i)
 			strcpy(infostr, tempstr);
 			infoclr = COL_RED;
 		}
+	}
+	if (objectIsDisabled(i)) {
+		sprintf(tempstr, "%s (disabled)", infostr);
+		strcpy(infostr, tempstr);
+		infoclr = COL_RED;
 	}
 }
 
