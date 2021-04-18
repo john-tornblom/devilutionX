@@ -276,7 +276,7 @@ void selhero_List_Select(int value)
 		int itemH = 33;
 		vecSelHeroDlgItems.push_back(new UiListItem("Warrior", PC_WARRIOR));
 		vecSelHeroDlgItems.push_back(new UiListItem("Rogue", PC_ROGUE));
-		vecSelHeroDlgItems.push_back(new UiListItem("Sorcerer", PC_SORCERER));
+		vecSelHeroDlgItems.push_back(new UiListItem("TROLLKARL", PC_SORCERER));
 		if (gbIsHellfire) {
 			vecSelHeroDlgItems.push_back(new UiListItem("Monk", PC_MONK));
 		}
@@ -314,7 +314,7 @@ void selhero_List_Select(int value)
 
 		selhero_FreeListItems();
 		vecSelHeroDlgItems.push_back(new UiListItem("Load Game", 0));
-		vecSelHeroDlgItems.push_back(new UiListItem("New Game", 1));
+		vecSelHeroDlgItems.push_back(new UiListItem("Nytt  Spel", 1));
 		vecSelDlgItems.push_back(new UiList(vecSelHeroDlgItems, PANEL_LEFT + 265, (UI_OFFSET_Y + 285), 320, 33, UIS_CENTER | UIS_MED | UIS_GOLD));
 
 		SDL_Rect rect2 = { (Sint16)(PANEL_LEFT + 279), (Sint16)(UI_OFFSET_Y + 427), 140, 35 };

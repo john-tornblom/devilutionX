@@ -40,16 +40,16 @@ enum item_misc_id OilMagic[] = {
 	IMISC_OILIMP,
 };
 const char* OilNames[10] = {
-	"Oil of Accuracy",
-	"Oil of Mastery",
-	"Oil of Sharpness",
-	"Oil of Death",
-	"Oil of Skill",
-	"Blacksmith Oil",
-	"Oil of Fortitude",
+	"Träffsäkerhetens Olja",
+	"Mästarens Olja",
+	"Skarphetens Olja",
+	"Dödens Olja",
+	"Färdighetens Olja",
+	"Smedens Olja",
+	"Tapperhetens Olja",
 	"Oil of Permanence",
-	"Oil of Hardening",
-	"Oil of Imperviousness"
+	"Härdande Olja",
+	"Ogenomtränglighetens Olja"
 };
 int MaxGold = GOLD_MAX_LIMIT;
 
@@ -82,25 +82,25 @@ BYTE ItemCAnimTbl[] = {
 /** Map of item type .cel file names. */
 const char *const ItemDropNames[] = {
 	"Armor2",
-	"Axe",
+	"Yxa",
 	"FBttle",
-	"Bow",
-	"GoldFlip",
+	"Båge",
+	"GuldFlipp",
 	"Helmut",
-	"Mace",
-	"Shield",
+	"Spikklubba",
+	"Sköld",
 	"SwrdFlip",
-	"Rock",
-	"Cleaver",
-	"Staff",
+	"Sten",
+	"Köttyxa",
+	"Stav",
 	"Ring",
 	"CrownF",
 	"LArmor",
 	"WShield",
-	"Scroll",
+	"Skriftrulle",
 	"FPlateAr",
 	"FBook",
-	"Food",
+	"Mat",
 	"FBttleBB",
 	"FBttleDY",
 	"FBttleOR",
@@ -1755,7 +1755,7 @@ void GetStaffPower(int i, int lvl, int bs, BOOL onlygood)
 			sprintf(istr, "%s %s", PL_Prefix[preidx].PLName, item[i]._iIName);
 			strcpy(item[i]._iIName, istr);
 		}
-		sprintf(istr, "%s of %s", item[i]._iIName, spelldata[bs].sNameText);
+		sprintf(istr, "%s av %s", item[i]._iIName, spelldata[bs].sNameText);
 		strcpy(item[i]._iIName, istr);
 		if (item[i]._iMagical == ITEM_QUALITY_NORMAL)
 			strcpy(item[i]._iName, item[i]._iIName);
@@ -1796,9 +1796,9 @@ void GetStaffSpell(int i, int lvl, BOOL onlygood)
 			if (s == maxSpells)
 				s = SPL_FIREBOLT;
 		}
-		sprintf(istr, "%s of %s", item[i]._iName, spelldata[bs].sNameText);
+		sprintf(istr, "%s av %s", item[i]._iName, spelldata[bs].sNameText);
 		if (!control_WriteStringToBuffer((BYTE *)istr))
-			sprintf(istr, "Staff of %s", spelldata[bs].sNameText);
+			sprintf(istr, "Stav med %s", spelldata[bs].sNameText);
 		strcpy(item[i]._iName, istr);
 		strcpy(item[i]._iIName, istr);
 
@@ -2390,7 +2390,7 @@ void GetItemPower(int i, int minlvl, int maxlvl, int flgs, BOOL onlygood)
 		}
 		if (nl != 0) {
 			sufidx = l[random_(23, nl)];
-			sprintf(istr, "%s of %s", item[i]._iIName, PL_Suffix[sufidx].PLName);
+			sprintf(istr, "%s av %s", item[i]._iIName, PL_Suffix[sufidx].PLName);
 			strcpy(item[i]._iIName, istr);
 			item[i]._iMagical = ITEM_QUALITY_MAGIC;
 			SaveItemSuffix(i, sufidx);
@@ -2409,7 +2409,7 @@ void GetItemPower(int i, int minlvl, int maxlvl, int flgs, BOOL onlygood)
 			strcpy(item[i]._iIName, istr);
 		}
 		if (sufidx != -1) {
-			sprintf(istr, "%s of %s", item[i]._iIName, PL_Suffix[sufidx].PLName);
+			sprintf(istr, "%s av %s", item[i]._iIName, PL_Suffix[sufidx].PLName);
 			strcpy(item[i]._iIName, istr);
 		}
 	}
@@ -2984,7 +2984,7 @@ void RecreateEar(int ii, WORD ic, int iseed, int Id, int dur, int mdur, int ch, 
 	tempstr[14] = (ibuff >> 8) & 0x7F;
 	tempstr[15] = ibuff & 0x7F;
 	tempstr[16] = '\0';
-	sprintf(item[ii]._iName, "Ear of %s", tempstr);
+	sprintf(item[ii]._iName, "Öra från %s", tempstr);
 	item[ii]._iCurs = ((ivalue >> 6) & 3) + ICURS_EAR_SORCERER;
 	item[ii]._ivalue = ivalue & 0x3F;
 	item[ii]._iCreateInfo = ic;
@@ -3286,7 +3286,7 @@ void GetItemStr(int i)
 			infoclr = COL_GOLD;
 	} else {
 		nGold = item[i]._ivalue;
-		sprintf(infostr, "%i gold %s", nGold, get_pieces_str(nGold));
+		sprintf(infostr, "%i guld%s", nGold, get_pieces_str(nGold));
 	}
 }
 
@@ -3538,33 +3538,33 @@ void PrintItemOil(char IDidx)
 {
 	switch (IDidx) {
 	case IMISC_OILACC:
-		strcpy(tempstr, "increases a weapon's");
+		strcpy(tempstr, "ökar ett vapens");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "chance to hit");
+		strcpy(tempstr, "träffsäkerhet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILMAST:
-		strcpy(tempstr, "greatly increases a");
+		strcpy(tempstr, "ökar avsevärt ett");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "weapon's chance to hit");
+		strcpy(tempstr, "vapens träffsäkerhet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILSHARP:
-		strcpy(tempstr, "increases a weapon's");
+		strcpy(tempstr, "ökar ett vapens");
 		AddPanelString(tempstr, TRUE);
 		strcpy(tempstr, "damage potential");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILDEATH:
-		strcpy(tempstr, "greatly increases a weapon's");
+		strcpy(tempstr, "ökar avsevärt ett vapens");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "damage potential - not bows");
+		strcpy(tempstr, "potentiella skadeverkan - ej pilbågar");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILSKILL:
-		strcpy(tempstr, "reduces attributes needed");
+		strcpy(tempstr, "reducerar krävda attribut");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "to use armor or weapons");
+		strcpy(tempstr, "för att använda rustningar eller vapen");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILBSMTH:
@@ -3574,25 +3574,25 @@ void PrintItemOil(char IDidx)
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILFORT:
-		strcpy(tempstr, "increases an item's");
+		strcpy(tempstr, "ökar ett föremåls");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "current and max durability");
+		strcpy(tempstr, "nuvarande och maximala hållfasthet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILPERM:
-		strcpy(tempstr, "makes an item indestructible");
+		strcpy(tempstr, "gör ett föremål oförstörbart");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILHARD:
-		strcpy(tempstr, "increases the armor class");
+		strcpy(tempstr, "ökar pansarklassen");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "of armor and shields");
+		strcpy(tempstr, "på rustningar och sköldar");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OILIMP:
-		strcpy(tempstr, "greatly increases the armor");
+		strcpy(tempstr, "ökar avsevärt pansar");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "class of armor and shields");
+		strcpy(tempstr, "klassen för rustningar och sköldar");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_RUNEF:
@@ -3616,67 +3616,67 @@ void PrintItemOil(char IDidx)
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_FULLHEAL:
-		strcpy(tempstr, "fully recover life");
+		strcpy(tempstr, "återge full livskraft");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_HEAL:
-		strcpy(tempstr, "recover partial life");
+		strcpy(tempstr, "återge delvis livskraft");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_OLDHEAL:
-		strcpy(tempstr, "recover life");
+		strcpy(tempstr, "återge livskraft");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_DEADHEAL:
-		strcpy(tempstr, "deadly heal");
+		strcpy(tempstr, "dödlig läkekraft");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_MANA:
-		strcpy(tempstr, "recover mana");
+		strcpy(tempstr, "återge mana");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_FULLMANA:
-		strcpy(tempstr, "fully recover mana");
+		strcpy(tempstr, "återge full mana");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXSTR:
-		strcpy(tempstr, "increase strength");
+		strcpy(tempstr, "öka styrka");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXMAG:
-		strcpy(tempstr, "increase magic");
+		strcpy(tempstr, "öka magi");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXDEX:
-		strcpy(tempstr, "increase dexterity");
+		strcpy(tempstr, "öka smidighet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXVIT:
-		strcpy(tempstr, "increase vitality");
+		strcpy(tempstr, "öka vitalitet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXWEAK:
-		strcpy(tempstr, "decrease strength");
+		strcpy(tempstr, "minska styrka");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXDIS:
-		strcpy(tempstr, "decrease strength");
+		strcpy(tempstr, "minska styrka");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXCLUM:
-		strcpy(tempstr, "decrease dexterity");
+		strcpy(tempstr, "minska smidighet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_ELIXSICK:
-		strcpy(tempstr, "decrease vitality");
+		strcpy(tempstr, "minska vitalitet");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_REJUV:
-		strcpy(tempstr, "recover life and mana");
+		strcpy(tempstr, "återge livskraft och mana");
 		AddPanelString(tempstr, TRUE);
 		break;
 	case IMISC_FULLREJUV:
-		strcpy(tempstr, "fully recover life and mana");
+		strcpy(tempstr, "återge full livskraft och mana");
 		AddPanelString(tempstr, TRUE);
 		break;
 	}
@@ -3691,21 +3691,21 @@ void PrintItemPower(char plidx, ItemStruct *x)
 		break;
 	case IPL_DAMP:
 	case IPL_DAMP_CURSE:
-		sprintf(tempstr, "%+i%% damage", x->_iPLDam);
+		sprintf(tempstr, "%+i%% skada", x->_iPLDam);
 		break;
 	case IPL_TOHIT_DAMP:
 	case IPL_TOHIT_DAMP_CURSE:
-		sprintf(tempstr, "to hit: %+i%%, %+i%% damage", x->_iPLToHit, x->_iPLDam);
+		sprintf(tempstr, "att träffa: %+i%%, %+i%% skada", x->_iPLToHit, x->_iPLDam);
 		break;
 	case IPL_ACP:
 	case IPL_ACP_CURSE:
-		sprintf(tempstr, "%+i%% armor", x->_iPLAC);
+		sprintf(tempstr, "%+i%% pansar", x->_iPLAC);
 		break;
 	case IPL_SETAC:
-		sprintf(tempstr, "armor class: %i", x->_iAC);
+		sprintf(tempstr, "pansarklass: %i", x->_iAC);
 		break;
 	case IPL_AC_CURSE:
-		sprintf(tempstr, "armor class: %i", x->_iAC);
+		sprintf(tempstr, "pansarklass: %i", x->_iAC);
 		break;
 	case IPL_FIRERES:
 	case IPL_FIRERES_CURSE:
@@ -3737,57 +3737,57 @@ void PrintItemPower(char plidx, ItemStruct *x)
 		break;
 	case IPL_SPLLVLADD:
 		if (x->_iSplLvlAdd == 1)
-			strcpy(tempstr, "spells are increased 1 level");
+			strcpy(tempstr, "trollformler ökar 1 nivå");
 		else if (x->_iSplLvlAdd > 1)
 			sprintf(tempstr, "spells are increased %i levels", x->_iSplLvlAdd);
 		else if (x->_iSplLvlAdd == -1)
-			strcpy(tempstr, "spells are decreased 1 level");
+			strcpy(tempstr, "trollformler minskar 1 nivå");
 		else if (x->_iSplLvlAdd < -1)
 			sprintf(tempstr, "spells are decreased %i levels", -x->_iSplLvlAdd);
 		else if (x->_iSplLvlAdd == 0)
 			strcpy(tempstr, "spell levels unchanged (?)");
 		break;
 	case IPL_CHARGES:
-		strcpy(tempstr, "Extra charges");
+		strcpy(tempstr, "Extra laddningar");
 		break;
 	case IPL_SPELL:
-		sprintf(tempstr, "%i %s charges", x->_iMaxCharges, spelldata[x->_iSpell].sNameText);
+		sprintf(tempstr, "%i %s laddningar", x->_iMaxCharges, spelldata[x->_iSpell].sNameText);
 		break;
 	case IPL_FIREDAM:
 		if (x->_iFMinDam == x->_iFMaxDam)
 			sprintf(tempstr, "Fire hit damage: %i", x->_iFMinDam);
 		else
-			sprintf(tempstr, "Fire hit damage: %i-%i", x->_iFMinDam, x->_iFMaxDam);
+			sprintf(tempstr, "Eld träffpoäng: %i-%i", x->_iFMinDam, x->_iFMaxDam);
 		break;
 	case IPL_LIGHTDAM:
 		if (x->_iLMinDam == x->_iLMaxDam)
 			sprintf(tempstr, "Lightning hit damage: %i", x->_iLMinDam);
 		else
-			sprintf(tempstr, "Lightning hit damage: %i-%i", x->_iLMinDam, x->_iLMaxDam);
+			sprintf(tempstr, "Blixt träffpoäng: %i-%i", x->_iLMinDam, x->_iLMaxDam);
 		break;
 	case IPL_STR:
 	case IPL_STR_CURSE:
-		sprintf(tempstr, "%+i to strength", x->_iPLStr);
+		sprintf(tempstr, "%+i till styrka", x->_iPLStr);
 		break;
 	case IPL_MAG:
 	case IPL_MAG_CURSE:
-		sprintf(tempstr, "%+i to magic", x->_iPLMag);
+		sprintf(tempstr, "%+i till magi", x->_iPLMag);
 		break;
 	case IPL_DEX:
 	case IPL_DEX_CURSE:
-		sprintf(tempstr, "%+i to dexterity", x->_iPLDex);
+		sprintf(tempstr, "%+i till smidighet", x->_iPLDex);
 		break;
 	case IPL_VIT:
 	case IPL_VIT_CURSE:
-		sprintf(tempstr, "%+i to vitality", x->_iPLVit);
+		sprintf(tempstr, "%+i till vitalitet", x->_iPLVit);
 		break;
 	case IPL_ATTRIBS:
 	case IPL_ATTRIBS_CURSE:
-		sprintf(tempstr, "%+i to all attributes", x->_iPLStr);
+		sprintf(tempstr, "%+i till alla attribut", x->_iPLStr);
 		break;
 	case IPL_GETHIT_CURSE:
 	case IPL_GETHIT:
-		sprintf(tempstr, "%+i damage from enemies", x->_iPLGetHit);
+		sprintf(tempstr, "%+i skada av fiender", x->_iPLGetHit);
 		break;
 	case IPL_LIFE:
 	case IPL_LIFE_CURSE:
@@ -3798,19 +3798,19 @@ void PrintItemPower(char plidx, ItemStruct *x)
 		sprintf(tempstr, "Mana: %+i", x->_iPLMana >> 6);
 		break;
 	case IPL_DUR:
-		strcpy(tempstr, "high durability");
+		strcpy(tempstr, "hög hållfasthet");
 		break;
 	case IPL_DUR_CURSE:
-		strcpy(tempstr, "decreased durability");
+		strcpy(tempstr, "minskad hållfasthet");
 		break;
 	case IPL_INDESTRUCTIBLE:
-		strcpy(tempstr, "indestructible");
+		strcpy(tempstr, "oförstörbar");
 		break;
 	case IPL_LIGHT:
-		sprintf(tempstr, "+%i%% light radius", 10 * x->_iPLLight);
+		sprintf(tempstr, "+%i%% ljusradie", 10 * x->_iPLLight);
 		break;
 	case IPL_LIGHT_CURSE:
-		sprintf(tempstr, "-%i%% light radius", -10 * x->_iPLLight);
+		sprintf(tempstr, "-%i%% ljusradie", -10 * x->_iPLLight);
 		break;
 	case IPL_MULT_ARROWS:
 		sprintf(tempstr, "multiple arrows per shot");
@@ -3819,13 +3819,13 @@ void PrintItemPower(char plidx, ItemStruct *x)
 		if (x->_iFMinDam == x->_iFMaxDam)
 			sprintf(tempstr, "fire arrows damage: %i", x->_iFMinDam);
 		else
-			sprintf(tempstr, "fire arrows damage: %i-%i", x->_iFMinDam, x->_iFMaxDam);
+			sprintf(tempstr, "eldpilar skada: %i-%i", x->_iFMinDam, x->_iFMaxDam);
 		break;
 	case IPL_LIGHT_ARROWS:
 		if (x->_iLMinDam == x->_iLMaxDam)
 			sprintf(tempstr, "lightning arrows damage %i", x->_iLMinDam);
 		else
-			sprintf(tempstr, "lightning arrows damage %i-%i", x->_iLMinDam, x->_iLMaxDam);
+			sprintf(tempstr, "blixtpilar skada %i-%i", x->_iLMinDam, x->_iLMaxDam);
 		break;
 	case IPL_FIREBALL:
 		if (x->_iFMinDam == x->_iFMaxDam)
@@ -3834,94 +3834,94 @@ void PrintItemPower(char plidx, ItemStruct *x)
 			sprintf(tempstr, "fireball damage: %i-%i", x->_iFMinDam, x->_iFMaxDam);
 		break;
 	case IPL_THORNS:
-		strcpy(tempstr, "attacker takes 1-3 damage");
+		strcpy(tempstr, "angriparen får 1-3 skada");
 		break;
 	case IPL_NOMANA:
-		strcpy(tempstr, "user loses all mana");
+		strcpy(tempstr, "användaren förlorar all mana");
 		break;
 	case IPL_NOHEALPLR:
-		strcpy(tempstr, "you can't heal");
+		strcpy(tempstr, "du kan inte läka");
 		break;
 	case IPL_ABSHALFTRAP:
-		strcpy(tempstr, "absorbs half of trap damage");
+		strcpy(tempstr, "ABSORBERAR HÄLFTEN AV SKADAN");
 		break;
 	case IPL_KNOCKBACK:
-		strcpy(tempstr, "knocks target back");
+		strcpy(tempstr, "slår tillbaka målet");
 		break;
 	case IPL_3XDAMVDEM:
-		strcpy(tempstr, "+200% damage vs. demons");
+		strcpy(tempstr, "+200% skada mot demoner");
 		break;
 	case IPL_ALLRESZERO:
-		strcpy(tempstr, "All Resistance equals 0");
+		strcpy(tempstr, "Allt Motstånd blir 0");
 		break;
 	case IPL_NOHEALMON:
-		strcpy(tempstr, "hit monster doesn't heal");
+		strcpy(tempstr, "träffat monster läker inte");
 		break;
 	case IPL_STEALMANA:
 		if (x->_iFlags & ISPL_STEALMANA_3)
-			strcpy(tempstr, "hit steals 3% mana");
+			strcpy(tempstr, "träff tar 3% mana");
 		if (x->_iFlags & ISPL_STEALMANA_5)
-			strcpy(tempstr, "hit steals 5% mana");
+			strcpy(tempstr, "träff tar 5% mana");
 		break;
 	case IPL_STEALLIFE:
 		if (x->_iFlags & ISPL_STEALLIFE_3)
-			strcpy(tempstr, "hit steals 3% life");
+			strcpy(tempstr, "träff tar 3% livskraft");
 		if (x->_iFlags & ISPL_STEALLIFE_5)
-			strcpy(tempstr, "hit steals 5% life");
+			strcpy(tempstr, "träff tar 5% livskraft");
 		break;
 	case IPL_TARGAC:
 		strcpy(tempstr, "penetrates target's armor");
 		break;
 	case IPL_FASTATTACK:
 		if (x->_iFlags & ISPL_QUICKATTACK)
-			strcpy(tempstr, "quick attack");
+			strcpy(tempstr, "hastig attack");
 		if (x->_iFlags & ISPL_FASTATTACK)
-			strcpy(tempstr, "fast attack");
+			strcpy(tempstr, "snabb attack");
 		if (x->_iFlags & ISPL_FASTERATTACK)
-			strcpy(tempstr, "faster attack");
+			strcpy(tempstr, "snabbare attack");
 		if (x->_iFlags & ISPL_FASTESTATTACK)
-			strcpy(tempstr, "fastest attack");
+			strcpy(tempstr, "snabbast attack");
 		break;
 	case IPL_FASTRECOVER:
 		if (x->_iFlags & ISPL_FASTRECOVER)
-			strcpy(tempstr, "fast hit recovery");
+			strcpy(tempstr, "snabb träffåterhämtning");
 		if (x->_iFlags & ISPL_FASTERRECOVER)
-			strcpy(tempstr, "faster hit recovery");
+			strcpy(tempstr, "snabbare träffåterhämtning");
 		if (x->_iFlags & ISPL_FASTESTRECOVER)
-			strcpy(tempstr, "fastest hit recovery");
+			strcpy(tempstr, "snabbast träffåterhämtning");
 		break;
 	case IPL_FASTBLOCK:
-		strcpy(tempstr, "fast block");
+		strcpy(tempstr, "snabb block");
 		break;
 	case IPL_DAMMOD:
-		sprintf(tempstr, "adds %i points to damage", x->_iPLDamMod);
+		sprintf(tempstr, "adderar %i poäng till skada", x->_iPLDamMod);
 		break;
 	case IPL_RNDARROWVEL:
-		strcpy(tempstr, "fires random speed arrows");
+		strcpy(tempstr, "avfyrar slumpmässiga snabbpilar");
 		break;
 	case IPL_SETDAM:
-		sprintf(tempstr, "unusual item damage");
+		sprintf(tempstr, "ovanligt föremål skada");
 		break;
 	case IPL_SETDUR:
-		strcpy(tempstr, "altered durability");
+		strcpy(tempstr, "ändrad hållfasthet");
 		break;
 	case IPL_FASTSWING:
-		strcpy(tempstr, "Faster attack swing");
+		strcpy(tempstr, "Snabbare attacksving");
 		break;
 	case IPL_ONEHAND:
-		strcpy(tempstr, "one handed sword");
+		strcpy(tempstr, "enhandssvärd");
 		break;
 	case IPL_DRAINLIFE:
-		strcpy(tempstr, "constantly lose hit points");
+		strcpy(tempstr, "förlorar träffpoäng konstant");
 		break;
 	case IPL_RNDSTEALLIFE:
-		strcpy(tempstr, "life stealing");
+		strcpy(tempstr, "stjäl livskraft");
 		break;
 	case IPL_NOMINSTR:
-		strcpy(tempstr, "no strength requirement");
+		strcpy(tempstr, "inget styrkekrav");
 		break;
 	case IPL_INFRAVISION:
-		strcpy(tempstr, "see with infravision");
+		strcpy(tempstr, "se med infraseende");
 		break;
 	case IPL_INVCURS:
 		strcpy(tempstr, " ");
@@ -3957,7 +3957,7 @@ void PrintItemPower(char plidx, ItemStruct *x)
 		sprintf(tempstr, "low dur, %+i%% damage", x->_iPLDam);
 		break;
 	case IPL_DOPPELGANGER:
-		sprintf(tempstr, "to hit: %+i%%, %+i%% damage", x->_iPLToHit, x->_iPLDam);
+		sprintf(tempstr, "att träffa: %+i%%, %+i%% skada", x->_iPLToHit, x->_iPLDam);
 		break;
 	case IPL_ACDEMON:
 		sprintf(tempstr, "extra AC vs demons");
@@ -4111,7 +4111,7 @@ static void PrintItemInfo(ItemStruct *x)
 	Uint8 dex = x->_iMinDex;
 	Uint8 mag = x->_iMinMag;
 	if (str != 0 || mag != 0 || dex != 0) {
-		strcpy(tempstr, "Required:");
+		strcpy(tempstr, "Krav:");
 		if (str)
 			sprintf(tempstr + strlen(tempstr), " %i Str", str);
 		if (mag)
@@ -4133,25 +4133,25 @@ void PrintItemDetails(ItemStruct *x)
 				sprintf(tempstr, "damage: %i  Dur: %i/%i", x->_iMinDam, x->_iDurability, x->_iMaxDur);
 		} else {
 			if (x->_iMaxDur == DUR_INDESTRUCTIBLE)
-				sprintf(tempstr, "damage: %i-%i  Indestructible", x->_iMinDam, x->_iMaxDam);
+				sprintf(tempstr, "skada: %i-%i  Oförstörbar", x->_iMinDam, x->_iMaxDam);
 			else
-				sprintf(tempstr, "damage: %i-%i  Dur: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
+				sprintf(tempstr, "skada: %i-%i  Hållf: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
 		}
 		AddPanelString(tempstr, TRUE);
 	}
 	if (x->_iClass == ICLASS_ARMOR) {
 		if (x->_iMaxDur == DUR_INDESTRUCTIBLE)
-			sprintf(tempstr, "armor: %i  Indestructible", x->_iAC);
+			sprintf(tempstr, "pansar: %i  Oförstörbar", x->_iAC);
 		else
-			sprintf(tempstr, "armor: %i  Dur: %i/%i", x->_iAC, x->_iDurability, x->_iMaxDur);
+			sprintf(tempstr, "pansar: %i  Hållf: %i/%i", x->_iAC, x->_iDurability, x->_iMaxDur);
 		AddPanelString(tempstr, TRUE);
 	}
 	if (x->_iMiscId == IMISC_STAFF && x->_iMaxCharges) {
 		if (x->_iMinDam == x->_iMaxDam)
 			sprintf(tempstr, "dam: %i  Dur: %i/%i", x->_iMinDam, x->_iDurability, x->_iMaxDur);
 		else
-			sprintf(tempstr, "dam: %i-%i  Dur: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
-		sprintf(tempstr, "Charges: %i/%i", x->_iCharges, x->_iMaxCharges);
+			sprintf(tempstr, "skada: %i-%i  Hållf: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
+		sprintf(tempstr, "Laddningar: %i/%i", x->_iCharges, x->_iMaxCharges);
 		AddPanelString(tempstr, TRUE);
 	}
 	if (x->_iPrePower != -1) {
@@ -4180,33 +4180,33 @@ void PrintItemDur(ItemStruct *x)
 				sprintf(tempstr, "damage: %i  Dur: %i/%i", x->_iMinDam, x->_iDurability, x->_iMaxDur);
 		} else {
 			if (x->_iMaxDur == DUR_INDESTRUCTIBLE)
-				sprintf(tempstr, "damage: %i-%i  Indestructible", x->_iMinDam, x->_iMaxDam);
+				sprintf(tempstr, "skada: %i-%i  Oförstörbar", x->_iMinDam, x->_iMaxDam);
 			else
-				sprintf(tempstr, "damage: %i-%i  Dur: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
+				sprintf(tempstr, "skada: %i-%i  Hållf: %i/%i", x->_iMinDam, x->_iMaxDam, x->_iDurability, x->_iMaxDur);
 		}
 		AddPanelString(tempstr, TRUE);
 		if (x->_iMiscId == IMISC_STAFF && x->_iMaxCharges) {
-			sprintf(tempstr, "Charges: %i/%i", x->_iCharges, x->_iMaxCharges);
+			sprintf(tempstr, "Laddningar: %i/%i", x->_iCharges, x->_iMaxCharges);
 			AddPanelString(tempstr, TRUE);
 		}
 		if (x->_iMagical != ITEM_QUALITY_NORMAL)
-			AddPanelString("Not Identified", TRUE);
+			AddPanelString("Ej Identifierad", TRUE);
 	}
 	if (x->_iClass == ICLASS_ARMOR) {
 		if (x->_iMaxDur == DUR_INDESTRUCTIBLE)
-			sprintf(tempstr, "armor: %i  Indestructible", x->_iAC);
+			sprintf(tempstr, "pansar: %i  Oförstörbar", x->_iAC);
 		else
-			sprintf(tempstr, "armor: %i  Dur: %i/%i", x->_iAC, x->_iDurability, x->_iMaxDur);
+			sprintf(tempstr, "pansar: %i  Hållf: %i/%i", x->_iAC, x->_iDurability, x->_iMaxDur);
 		AddPanelString(tempstr, TRUE);
 		if (x->_iMagical != ITEM_QUALITY_NORMAL)
-			AddPanelString("Not Identified", TRUE);
+			AddPanelString("Ej Identifierad", TRUE);
 		if (x->_iMiscId == IMISC_STAFF && x->_iMaxCharges) {
-			sprintf(tempstr, "Charges: %i/%i", x->_iCharges, x->_iMaxCharges);
+			sprintf(tempstr, "Laddningar: %i/%i", x->_iCharges, x->_iMaxCharges);
 			AddPanelString(tempstr, TRUE);
 		}
 	}
 	if (x->_itype == ITYPE_RING || x->_itype == ITYPE_AMULET)
-		AddPanelString("Not Identified", TRUE);
+		AddPanelString("Ej Identifierad", TRUE);
 	PrintItemInfo(x);
 }
 

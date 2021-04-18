@@ -41,7 +41,7 @@ void mainmenu_Load(const char *name, void (*fnSound)(const char *file))
 	vecMenuItems.push_back(new UiListItem("Replay Intro", MAINMENU_REPLAY_INTRO));
 	vecMenuItems.push_back(new UiListItem("Support", MAINMENU_SHOW_SUPPORT));
 	if (gbIsHellfire) {
-		vecMenuItems.push_back(new UiListItem("Credits", MAINMENU_SHOW_CREDITS));
+		vecMenuItems.push_back(new UiListItem("Spelskapare", MAINMENU_SHOW_CREDITS));
 		vecMenuItems.push_back(new UiListItem("Exit Hellfire", MAINMENU_EXIT_DIABLO));
 	} else {
 		vecMenuItems.push_back(new UiListItem("Show Credits", MAINMENU_SHOW_CREDITS));

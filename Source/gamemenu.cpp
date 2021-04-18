@@ -15,9 +15,9 @@ bool gbRunInTown = false;
 TMenuItem sgSingleMenu[] = {
 	// clang-format off
 //	  dwFlags,       pszStr,         fnMenu
-	{ GMENU_ENABLED, "Save Game",     &gamemenu_save_game  },
+	{ GMENU_ENABLED, "Spara Spel",     &gamemenu_save_game  },
 	{ GMENU_ENABLED, "Options",       &gamemenu_options    },
-	{ GMENU_ENABLED, "New Game",      &gamemenu_new_game   },
+	{ GMENU_ENABLED, "Nytt  Spel",      &gamemenu_new_game   },
 	{ GMENU_ENABLED, "Load Game",     &gamemenu_load_game  },
 	{ GMENU_ENABLED, "Quit Game",     &gamemenu_quit_game  },
 	{ GMENU_ENABLED, NULL,            NULL }
@@ -28,8 +28,8 @@ TMenuItem sgMultiMenu[] = {
 	// clang-format off
 //	  dwFlags,       pszStr,            fnMenu
 	{ GMENU_ENABLED, "Options",         &gamemenu_options      },
-	{ GMENU_ENABLED, "New Game",        &gamemenu_new_game     },
-	{ GMENU_ENABLED, "Restart In Town", &gamemenu_restart_town },
+	{ GMENU_ENABLED, "Nytt  Spel",        &gamemenu_new_game     },
+	{ GMENU_ENABLED, "Starta om i Staden", &gamemenu_restart_town },
 	{ GMENU_ENABLED, "Quit Game",       &gamemenu_quit_game    },
 	{ GMENU_ENABLED, NULL,              NULL                   },
 	// clang-format on
@@ -49,12 +49,12 @@ TMenuItem sgOptionsMenu[] = {
 };
 /** Specifies the menu names for music enabled and disabled. */
 const char *const music_toggle_names[] = {
-	"Music",
+	"Musik",
 	"Music Disabled",
 };
 /** Specifies the menu names for sound enabled and disabled. */
 const char *const sound_toggle_names[] = {
-	"Sound",
+	"Effektljud",
 	"Sound Disabled",
 };
 const char *jogging_toggle_names[] = {

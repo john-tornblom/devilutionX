@@ -5221,28 +5221,28 @@ void PrintMonstHistory(int mt)
 			res = monsterdata[mt].mMagicRes2;
 		res = res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING);
 		if (!res) {
-			strcpy(tempstr, "No magic resistance");
+			strcpy(tempstr, "Ingen magisk motståndskraft");
 			AddPanelString(tempstr, TRUE);
 		} else {
 			if (res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING)) {
 				strcpy(tempstr, "Resists: ");
 				if (res & RESIST_MAGIC)
-					strcat(tempstr, "Magic ");
+					strcat(tempstr, " Magi");
 				if (res & RESIST_FIRE)
-					strcat(tempstr, "Fire ");
+					strcat(tempstr, " Eld");
 				if (res & RESIST_LIGHTNING)
-					strcat(tempstr, "Lightning ");
+					strcat(tempstr, " Blixt");
 				tempstr[strlen(tempstr) - 1] = '\0';
 				AddPanelString(tempstr, TRUE);
 			}
 			if (res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING)) {
 				strcpy(tempstr, "Immune: ");
 				if (res & IMMUNE_MAGIC)
-					strcat(tempstr, "Magic ");
+					strcat(tempstr, " Magi");
 				if (res & IMMUNE_FIRE)
-					strcat(tempstr, "Fire ");
+					strcat(tempstr, " Eld");
 				if (res & IMMUNE_LIGHTNING)
-					strcat(tempstr, "Lightning ");
+					strcat(tempstr, " Blixt");
 				tempstr[strlen(tempstr) - 1] = '\0';
 				AddPanelString(tempstr, TRUE);
 			}
@@ -5262,19 +5262,19 @@ void PrintUniqueHistory()
 
 	res = monster[pcursmonst].mMagicRes & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING | IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING);
 	if (!res) {
-		strcpy(tempstr, "No resistances");
+		strcpy(tempstr, "Inga motståndskrafter");
 		AddPanelString(tempstr, TRUE);
-		strcpy(tempstr, "No Immunities");
+		strcpy(tempstr, "Inga Immuniteter");
 	} else {
 		if (res & (RESIST_MAGIC | RESIST_FIRE | RESIST_LIGHTNING))
-			strcpy(tempstr, "Some Magic Resistances");
+			strcpy(tempstr, "Någon Magisk Motståndskraft");
 		else
-			strcpy(tempstr, "No resistances");
+			strcpy(tempstr, "Inga motståndskrafter");
 		AddPanelString(tempstr, TRUE);
 		if (res & (IMMUNE_MAGIC | IMMUNE_FIRE | IMMUNE_LIGHTNING)) {
-			strcpy(tempstr, "Some Magic Immunities");
+			strcpy(tempstr, "Några Magiska Immuniteter");
 		} else {
-			strcpy(tempstr, "No Immunities");
+			strcpy(tempstr, "Inga Immuniteter");
 		}
 	}
 	AddPanelString(tempstr, TRUE);

@@ -148,7 +148,7 @@ void PrintStoreItem(ItemStruct *x, int l, text_color iclr)
 		}
 	}
 	if (x->_iMiscId == IMISC_STAFF && x->_iMaxCharges) {
-		sprintf(tempstr, "Charges: %i/%i", x->_iCharges, x->_iMaxCharges);
+		sprintf(tempstr, "Laddningar: %i/%i", x->_iCharges, x->_iMaxCharges);
 		if (sstr[0])
 			strcat(sstr, ",  ");
 		strcat(sstr, tempstr);
@@ -159,11 +159,11 @@ void PrintStoreItem(ItemStruct *x, int l, text_color iclr)
 	}
 	sstr[0] = '\0';
 	if (x->_iClass == ICLASS_WEAPON)
-		sprintf(sstr, "Damage: %i-%i  ", x->_iMinDam, x->_iMaxDam);
+		sprintf(sstr, "Skada: %i-%i", x->_iMinDam, x->_iMaxDam);
 	if (x->_iClass == ICLASS_ARMOR)
-		sprintf(sstr, "Armor: %i  ", x->_iAC);
+		sprintf(sstr, "Pansar: %i", x->_iAC);
 	if (x->_iMaxDur != DUR_INDESTRUCTIBLE && x->_iMaxDur) {
-		sprintf(tempstr, "Dur: %i/%i,  ", x->_iDurability, x->_iMaxDur);
+		sprintf(tempstr, "Hållf: %i/%i,", x->_iDurability, x->_iMaxDur);
 		strcat(sstr, tempstr);
 	} else {
 		strcat(sstr, "Indestructible,  ");
@@ -174,9 +174,9 @@ void PrintStoreItem(ItemStruct *x, int l, text_color iclr)
 	mag = x->_iMinMag;
 	dex = x->_iMinDex;
 	if (str == 0 && mag == 0 && dex == 0) {
-		strcat(sstr, "No required attributes");
+		strcat(sstr, "Inga attribut krävs");
 	} else {
-		strcpy(tempstr, "Required:");
+		strcpy(tempstr, "Krav:");
 		if (str)
 			sprintf(tempstr + strlen(tempstr), " %i Str", str);
 		if (mag)
@@ -188,7 +188,7 @@ void PrintStoreItem(ItemStruct *x, int l, text_color iclr)
 	AddSText(40, l++, FALSE, sstr, iclr, FALSE);
 	if (x->_iMagical == ITEM_QUALITY_UNIQUE) {
 		if (x->_iIdentified)
-			AddSText(40, l, FALSE, "Unique Item", iclr, FALSE);
+			AddSText(40, l, FALSE, "Unikt Föremål", iclr, FALSE);
 	}
 }
 
@@ -272,15 +272,15 @@ void S_StartSmith()
 {
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 1, TRUE, "Welcome to the", COL_GOLD, FALSE);
-	AddSText(0, 3, TRUE, "Blacksmith's shop", COL_GOLD, FALSE);
-	AddSText(0, 7, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 10, TRUE, "Talk to Griswold", COL_BLUE, TRUE);
-	AddSText(0, 12, TRUE, "Buy basic items", COL_WHITE, TRUE);
-	AddSText(0, 14, TRUE, "Buy premium items", COL_WHITE, TRUE);
-	AddSText(0, 16, TRUE, "Sell items", COL_WHITE, TRUE);
-	AddSText(0, 18, TRUE, "Repair items", COL_WHITE, TRUE);
-	AddSText(0, 20, TRUE, "Leave the shop", COL_WHITE, TRUE);
+	AddSText(0, 1, TRUE, "Välkommen till", COL_GOLD, FALSE);
+	AddSText(0, 3, TRUE, "Smedens affär", COL_GOLD, FALSE);
+	AddSText(0, 7, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 10, TRUE, "Prata med Griswold", COL_BLUE, TRUE);
+	AddSText(0, 12, TRUE, "Köpa enkla föremål", COL_WHITE, TRUE);
+	AddSText(0, 14, TRUE, "Köpa kvalitetsföremål", COL_WHITE, TRUE);
+	AddSText(0, 16, TRUE, "Sälja föremål", COL_WHITE, TRUE);
+	AddSText(0, 18, TRUE, "Reparera föremål", COL_WHITE, TRUE);
+	AddSText(0, 20, TRUE, "Lämna affären", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
 }
@@ -640,13 +640,13 @@ void S_StartWitch()
 	FillManaPlayer();
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 2, TRUE, "Witch's shack", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Adria", COL_BLUE, TRUE);
-	AddSText(0, 14, TRUE, "Buy items", COL_WHITE, TRUE);
-	AddSText(0, 16, TRUE, "Sell items", COL_WHITE, TRUE);
-	AddSText(0, 18, TRUE, "Recharge staves", COL_WHITE, TRUE);
-	AddSText(0, 20, TRUE, "Leave the shack", COL_WHITE, TRUE);
+	AddSText(0, 2, TRUE, "Häxans stuga", COL_GOLD, FALSE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Adria", COL_BLUE, TRUE);
+	AddSText(0, 14, TRUE, "Köp föremål", COL_WHITE, TRUE);
+	AddSText(0, 16, TRUE, "Sälja föremål", COL_WHITE, TRUE);
+	AddSText(0, 18, TRUE, "Ladda stavar", COL_WHITE, TRUE);
+	AddSText(0, 20, TRUE, "Lämna stugan", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
 }
@@ -891,7 +891,7 @@ void S_StartNoMoney()
 	stextscrl = false;
 	stextsize = true;
 	ClearSText(5, 23);
-	AddSText(0, 14, TRUE, "You do not have enough gold", COL_WHITE, TRUE);
+	AddSText(0, 14, TRUE, "Du har inte tillräckligt med guld", COL_WHITE, TRUE);
 }
 
 void S_StartNoRoom()
@@ -899,7 +899,7 @@ void S_StartNoRoom()
 	StartStore(stextshold);
 	stextscrl = false;
 	ClearSText(5, 23);
-	AddSText(0, 14, TRUE, "You do not have enough room in inventory", COL_WHITE, TRUE);
+	AddSText(0, 14, TRUE, "Du har inte mer plats bland dina inventarier", COL_WHITE, TRUE);
 }
 
 void S_StartConfirm()
@@ -940,33 +940,33 @@ void S_StartConfirm()
 
 	switch (stextshold) {
 	case STORE_BBOY:
-		strcpy(tempstr, "Do we have a deal?");
+		strcpy(tempstr, "Ska vi göra affär?");
 		break;
 	case STORE_SIDENTIFY:
-		strcpy(tempstr, "Are you sure you want to identify this item?");
+		strcpy(tempstr, "Är du säker på att du vill identifiera detta föremål?");
 		break;
 	case STORE_HBUY:
 	case STORE_SPBUY:
 	case STORE_WBUY:
 	case STORE_SBUY:
-		strcpy(tempstr, "Are you sure you want to buy this item?");
+		strcpy(tempstr, "Är du säker på att du vill köpa detta föremål?");
 		break;
 	case STORE_WRECHARGE:
-		strcpy(tempstr, "Are you sure you want to recharge this item?");
+		strcpy(tempstr, "Är du säker på att du vill ladda upp detta föremål?");
 		break;
 	case STORE_SSELL:
 	case STORE_WSELL:
-		strcpy(tempstr, "Are you sure you want to sell this item?");
+		strcpy(tempstr, "Är du säker på att du vill sälja detta föremål?");
 		break;
 	case STORE_SREPAIR:
-		strcpy(tempstr, "Are you sure you want to repair this item?");
+		strcpy(tempstr, "Är du säker på att du vill reparera detta föremål?");
 		break;
 	default:
 		app_fatal("Unknown store dialog %d", stextshold);
 	}
 	AddSText(0, 15, TRUE, tempstr, COL_WHITE, FALSE);
-	AddSText(0, 18, TRUE, "Yes", COL_WHITE, TRUE);
-	AddSText(0, 20, TRUE, "No", COL_WHITE, TRUE);
+	AddSText(0, 18, TRUE, "Ja", COL_WHITE, TRUE);
+	AddSText(0, 20, TRUE, "Nej", COL_WHITE, TRUE);
 }
 
 void S_StartBoy()
@@ -976,14 +976,14 @@ void S_StartBoy()
 	AddSText(0, 2, TRUE, "Wirt the Peg-legged boy", COL_GOLD, FALSE);
 	AddSLine(5);
 	if (!boyitem.isEmpty()) {
-		AddSText(0, 8, TRUE, "Talk to Wirt", COL_BLUE, TRUE);
-		AddSText(0, 12, TRUE, "I have something for sale,", COL_GOLD, FALSE);
-		AddSText(0, 14, TRUE, "but it will cost 50 gold", COL_GOLD, FALSE);
-		AddSText(0, 16, TRUE, "just to take a look. ", COL_GOLD, FALSE);
-		AddSText(0, 18, TRUE, "What have you got?", COL_WHITE, TRUE);
+		AddSText(0, 8, TRUE, "Tala med Wirt", COL_BLUE, TRUE);
+		AddSText(0, 12, TRUE, "Jag har något till salu,", COL_GOLD, FALSE);
+		AddSText(0, 14, TRUE, "men det kostar 50 guldstycken", COL_GOLD, FALSE);
+		AddSText(0, 16, TRUE, "om du vill se vad det är.", COL_GOLD, FALSE);
+		AddSText(0, 18, TRUE, "Vad har du att erbjuda?", COL_WHITE, TRUE);
 		AddSText(0, 20, TRUE, "Say goodbye", COL_WHITE, TRUE);
 	} else {
-		AddSText(0, 12, TRUE, "Talk to Wirt", COL_BLUE, TRUE);
+		AddSText(0, 12, TRUE, "Tala med Wirt", COL_BLUE, TRUE);
 		AddSText(0, 18, TRUE, "Say goodbye", COL_WHITE, TRUE);
 	}
 }
@@ -1031,12 +1031,12 @@ void S_StartHealer()
 	HealPlayer();
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 1, TRUE, "Welcome to the", COL_GOLD, FALSE);
-	AddSText(0, 3, TRUE, "Healer's home", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Pepin", COL_BLUE, TRUE);
-	AddSText(0, 14, TRUE, "Buy items", COL_WHITE, TRUE);
-	AddSText(0, 16, TRUE, "Leave Healer's home", COL_WHITE, TRUE);
+	AddSText(0, 1, TRUE, "Välkommen till", COL_GOLD, FALSE);
+	AddSText(0, 3, TRUE, "Helbrägdagörarens hem", COL_GOLD, FALSE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Pepin", COL_BLUE, TRUE);
+	AddSText(0, 14, TRUE, "Köp föremål", COL_WHITE, TRUE);
+	AddSText(0, 16, TRUE, "Lämna Helbrägdagörarens hem", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
 }
@@ -1094,10 +1094,10 @@ void S_StartStory()
 {
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 2, TRUE, "The Town Elder", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Cain", COL_BLUE, TRUE);
-	AddSText(0, 14, TRUE, "Identify an item", COL_WHITE, TRUE);
+	AddSText(0, 2, TRUE, "Stadens Ålderman", COL_GOLD, FALSE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Cain", COL_BLUE, TRUE);
+	AddSText(0, 14, TRUE, "Identifiera ett föremål", COL_WHITE, TRUE);
 	AddSText(0, 18, TRUE, "Say goodbye", COL_WHITE, TRUE);
 	AddSLine(5);
 }
@@ -1206,10 +1206,10 @@ void S_StartIdShow()
 	if (!plr[myplr].HoldItem._iStatFlag)
 		iclr = COL_RED;
 
-	AddSText(0, 7, TRUE, "This item is:", COL_WHITE, FALSE);
+	AddSText(0, 7, TRUE, "Detta föremål är:", COL_WHITE, FALSE);
 	AddSText(20, 11, FALSE, plr[myplr].HoldItem._iIName, iclr, FALSE);
 	PrintStoreItem(&plr[myplr].HoldItem, 12, iclr);
-	AddSText(0, 18, TRUE, "Done", COL_WHITE, TRUE);
+	AddSText(0, 18, TRUE, "Klart", COL_WHITE, TRUE);
 }
 
 void S_StartTalk()
@@ -1218,13 +1218,13 @@ void S_StartTalk()
 
 	stextsize = false;
 	stextscrl = false;
-	sprintf(tempstr, "Talk to %s", talkname[talker]);
+	sprintf(tempstr, "Tala med %s", talkname[talker]);
 	AddSText(0, 2, TRUE, tempstr, COL_GOLD, FALSE);
 	AddSLine(5);
 	if (gbIsSpawn) {
-		sprintf(tempstr, "Talking to %s", talkname[talker]);
+		sprintf(tempstr, "Talar med %s", talkname[talker]);
 		AddSText(0, 10, TRUE, tempstr, COL_WHITE, FALSE);
-		AddSText(0, 12, TRUE, "is not available", COL_WHITE, FALSE);
+		AddSText(0, 12, TRUE, "ej tillgängligt", COL_WHITE, FALSE);
 		AddSText(0, 14, TRUE, "in the shareware", COL_WHITE, FALSE);
 		AddSText(0, 16, TRUE, "version", COL_WHITE, FALSE);
 		AddSText(0, 22, TRUE, "Back", COL_WHITE, TRUE);
@@ -1253,7 +1253,7 @@ void S_StartTalk()
 			sn += la;
 		}
 	}
-	AddSText(0, sn2, TRUE, "Gossip", COL_BLUE, TRUE);
+	AddSText(0, sn2, TRUE, "Skvaller", COL_BLUE, TRUE);
 	AddSText(0, 22, TRUE, "Back", COL_WHITE, TRUE);
 }
 
@@ -1261,11 +1261,11 @@ void S_StartTavern()
 {
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 1, TRUE, "Welcome to the", COL_GOLD, FALSE);
-	AddSText(0, 3, TRUE, "Rising Sun", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Ogden", COL_BLUE, TRUE);
-	AddSText(0, 18, TRUE, "Leave the tavern", COL_WHITE, TRUE);
+	AddSText(0, 1, TRUE, "Välkommen till", COL_GOLD, FALSE);
+	AddSText(0, 3, TRUE, "Stigande Sol", COL_GOLD, FALSE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Ogden", COL_BLUE, TRUE);
+	AddSText(0, 18, TRUE, "Lämna värdshuset", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
 }
@@ -1275,8 +1275,8 @@ void S_StartBarMaid()
 	stextsize = false;
 	stextscrl = false;
 	AddSText(0, 2, TRUE, "Gillian", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Gillian", COL_BLUE, TRUE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Gillian", COL_BLUE, TRUE);
 	AddSText(0, 18, TRUE, "Say goodbye", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
@@ -1286,10 +1286,10 @@ void S_StartDrunk()
 {
 	stextsize = false;
 	stextscrl = false;
-	AddSText(0, 2, TRUE, "Farnham the Drunk", COL_GOLD, FALSE);
-	AddSText(0, 9, TRUE, "Would you like to:", COL_GOLD, FALSE);
-	AddSText(0, 12, TRUE, "Talk to Farnham", COL_BLUE, TRUE);
-	AddSText(0, 18, TRUE, "Say Goodbye", COL_WHITE, TRUE);
+	AddSText(0, 2, TRUE, "Fyllot Farnham", COL_GOLD, FALSE);
+	AddSText(0, 9, TRUE, "Vill du:", COL_GOLD, FALSE);
+	AddSText(0, 12, TRUE, "Tala med Farnham", COL_BLUE, TRUE);
+	AddSText(0, 18, TRUE, "Säg Adjö", COL_WHITE, TRUE);
 	AddSLine(5);
 	storenumh = 20;
 }

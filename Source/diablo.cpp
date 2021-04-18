@@ -407,7 +407,7 @@ static void SaveOptions()
 	setIniInt("Hellfire", "Intro", sgOptions.Hellfire.bIntro);
 	setIniValue("Hellfire", "SItem", sgOptions.Hellfire.szItem);
 
-	setIniInt("Audio", "Sound Volume", sgOptions.Audio.nSoundVolume);
+	setIniInt("Audio", "Ljudvolym", sgOptions.Audio.nSoundVolume);
 	setIniInt("Audio", "Music Volume", sgOptions.Audio.nMusicVolume);
 	setIniInt("Audio", "Walking Sound", sgOptions.Audio.bWalkingSound);
 	setIniInt("Audio", "Auto Equip Sound", sgOptions.Audio.bAutoEquipSound);
@@ -475,7 +475,7 @@ static void LoadOptions()
 	sgOptions.Hellfire.bIntro = getIniBool("Hellfire", "Intro", true);
 	getIniValue("Hellfire", "SItem", sgOptions.Hellfire.szItem, sizeof(sgOptions.Hellfire.szItem), "");
 
-	sgOptions.Audio.nSoundVolume = getIniInt("Audio", "Sound Volume", VOLUME_MAX);
+	sgOptions.Audio.nSoundVolume = getIniInt("Audio", "Ljudvolym", VOLUME_MAX);
 	sgOptions.Audio.nMusicVolume = getIniInt("Audio", "Music Volume", VOLUME_MAX);
 	sgOptions.Audio.bWalkingSound = getIniBool("Audio", "Walking Sound", true);
 	sgOptions.Audio.bAutoEquipSound = getIniBool("Audio", "Auto Equip Sound", false);
@@ -1051,8 +1051,8 @@ static void PressKey(int vkey)
 			helpflag = FALSE;
 		} else if (stextflag != STORE_NONE) {
 			ClearPanel();
-			AddPanelString("No help available", TRUE); /// BUGFIX: message isn't displayed
-			AddPanelString("while in stores", TRUE);
+			AddPanelString("Ingen hjälp tillgänglig", TRUE); /// BUGFIX: message isn't displayed
+			AddPanelString("när du är i en affär", TRUE);
 			track_repeat_walk(FALSE);
 		} else {
 			invflag = FALSE;
@@ -1329,8 +1329,8 @@ static void PressChar(WPARAM vkey)
 		char pszStr[120];
 		const char *difficulties[3] = {
 			"Normal",
-			"Nightmare",
-			"Hell",
+			"Mardröm",
+			"Helvetet",
 		};
 		sprintf(pszStr, "%s, mode = %s", gszProductName, difficulties[gnDifficulty]);
 		NetSendCmdString(1 << myplr, pszStr);

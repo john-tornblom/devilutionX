@@ -29,32 +29,32 @@ int bxadd[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
 int byadd[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
 /** Maps from shrine_id to shrine name. */
 const char *const shrinestrs[] = {
-	"Mysterious",
-	"Hidden",
-	"Gloomy",
-	"Weird",
-	"Magical",
-	"Stone",
-	"Religious",
-	"Enchanted",
-	"Thaumaturgic",
-	"Fascinating",
-	"Cryptic",
-	"Magical",
-	"Eldritch",
-	"Eerie",
-	"Divine",
-	"Holy",
-	"Sacred",
-	"Spiritual",
-	"Spooky",
-	"Abandoned",
-	"Creepy",
-	"Quiet",
-	"Secluded",
-	"Ornate",
-	"Glimmering",
-	"Tainted",
+	"Mystisk",
+	"Dold",
+	"Dunkel",
+	"Konstig",
+	"Magisk",
+	"Sten",
+	"Religiös",
+	"Förtrollad",
+	"Undergörande",
+	"Fascinerande",
+	"Kryptisk",
+	"Magisk",
+	"Kuslig",
+	"Spöklik",
+	"Gudomlig",
+	"Helig",
+	"Helig",
+	"Spiritistisk",
+	"Skrämmande",
+	"Övergiven",
+	"Läskig",
+	"Tyst",
+	"Avskild",
+	"Ornamenterad",
+	"Glimmande",
+	"Befläckad",
 	"Oily",
 	"Glowing",
 	"Mendicant's",
@@ -185,13 +185,13 @@ BYTE shrineavail[] = {
 const char *const StoryBookName[] = {
 	"The Great Conflict",
 	"The Wages of Sin are War",
-	"The Tale of the Horadrim",
-	"The Dark Exile",
+	"Sägnen om Horadrim",
+	"Den Mörka Exilen",
 	"The Sin War",
 	"The Binding of the Three",
-	"The Realms Beyond",
-	"Tale of the Three",
-	"The Black King",
+	"De Yttre Rikena",
+	"Legenden om de Tre",
+	"Den Svarte Kungen",
 	"Journal: The Ensorcellment",
 	"Journal: The Meeting",
 	"Journal: The Tirade",
@@ -5055,11 +5055,11 @@ void GetObjectStr(int i)
 	case OBJ_CRUX1:
 	case OBJ_CRUX2:
 	case OBJ_CRUX3:
-		strcpy(infostr, "Crucified Skeleton");
+		strcpy(infostr, "Korsfäst Skelett");
 		break;
 	case OBJ_LEVER:
 	case OBJ_FLAMELVR:
-		strcpy(infostr, "Lever");
+		strcpy(infostr, "Spak");
 		break;
 	case OBJ_L1LDOOR:
 	case OBJ_L1RDOOR:
@@ -5068,49 +5068,49 @@ void GetObjectStr(int i)
 	case OBJ_L3LDOOR:
 	case OBJ_L3RDOOR:
 		if (object[i]._oVar4 == 1)
-			strcpy(infostr, "Open Door");
+			strcpy(infostr, "Öppen Dörr");
 		if (object[i]._oVar4 == 0)
-			strcpy(infostr, "Closed Door");
+			strcpy(infostr, "Stängd Dörr");
 		if (object[i]._oVar4 == 2)
-			strcpy(infostr, "Blocked Door");
+			strcpy(infostr, "Blockerad Dörr");
 		break;
 	case OBJ_BOOK2L:
 		if (setlevel) {
 			if (setlvlnum == SL_BONECHAMB) {
-				strcpy(infostr, "Ancient Tome");
+				strcpy(infostr, "Uråldrig Skrift");
 			} else if (setlvlnum == SL_VILEBETRAYER) {
-				strcpy(infostr, "Book of Vileness");
+				strcpy(infostr, "Uselhetens Bok");
 			}
 		}
 		break;
 	case OBJ_SWITCHSKL:
-		strcpy(infostr, "Skull Lever");
+		strcpy(infostr, "Skallprydd Spak");
 		break;
 	case OBJ_BOOK2R:
-		strcpy(infostr, "Mythical Book");
+		strcpy(infostr, "Mytologisk Bok");
 		break;
 	case OBJ_CHEST1:
 	case OBJ_TCHEST1:
-		strcpy(infostr, "Small Chest");
+		strcpy(infostr, "Liten Kista");
 		break;
 	case OBJ_CHEST2:
 	case OBJ_TCHEST2:
-		strcpy(infostr, "Chest");
+		strcpy(infostr, "Kista");
 		break;
 	case OBJ_CHEST3:
 	case OBJ_TCHEST3:
 	case OBJ_SIGNCHEST:
-		strcpy(infostr, "Large Chest");
+		strcpy(infostr, "Stor Kista");
 		break;
 	case OBJ_SARC:
-		strcpy(infostr, "Sarcophagus");
+		strcpy(infostr, "Sarkofag");
 		break;
 	case OBJ_BOOKSHELF:
-		strcpy(infostr, "Bookshelf");
+		strcpy(infostr, "Bokhylla");
 		break;
 	case OBJ_BOOKCASEL:
 	case OBJ_BOOKCASER:
-		strcpy(infostr, "Bookcase");
+		strcpy(infostr, "Bokskåp");
 		break;
 	case OBJ_BARREL:
 	case OBJ_BARRELEX:
@@ -5119,78 +5119,78 @@ void GetObjectStr(int i)
 		else if (currlevel >= 21 && currlevel <= 24) // for crypt levels
 			strcpy(infostr, "Urn");                  //Then a barrel is called an urn
 		else
-			strcpy(infostr, "Barrel");
+			strcpy(infostr, "Tunna");
 		break;
 	case OBJ_SHRINEL:
 	case OBJ_SHRINER:
-		sprintf(tempstr, "%s Shrine", shrinestrs[object[i]._oVar1]);
+		sprintf(tempstr, "%s Helgedom", shrinestrs[object[i]._oVar1]);
 		strcpy(infostr, tempstr);
 		break;
 	case OBJ_SKELBOOK:
-		strcpy(infostr, "Skeleton Tome");
+		strcpy(infostr, "Skelettskrift");
 		break;
 	case OBJ_BOOKSTAND:
-		strcpy(infostr, "Library Book");
+		strcpy(infostr, "Biblioteksbok");
 		break;
 	case OBJ_BLOODFTN:
-		strcpy(infostr, "Blood Fountain");
+		strcpy(infostr, "Blodfontän");
 		break;
 	case OBJ_DECAP:
-		strcpy(infostr, "Decapitated Body");
+		strcpy(infostr, "Huvudlös Kropp");
 		break;
 	case OBJ_BLINDBOOK:
-		strcpy(infostr, "Book of the Blind");
+		strcpy(infostr, "De Blindas Bok");
 		break;
 	case OBJ_BLOODBOOK:
-		strcpy(infostr, "Book of Blood");
+		strcpy(infostr, "Blodets Bok");
 		break;
 	case OBJ_PURIFYINGFTN:
-		strcpy(infostr, "Purifying Spring");
+		strcpy(infostr, "Renande Källa");
 		break;
 	case OBJ_ARMORSTAND:
 	case OBJ_WARARMOR:
-		strcpy(infostr, "Armor");
+		strcpy(infostr, "Rustning");
 		break;
 	case OBJ_WARWEAP:
-		strcpy(infostr, "Weapon Rack");
+		strcpy(infostr, "Vapenställ");
 		break;
 	case OBJ_GOATSHRINE:
-		strcpy(infostr, "Goat Shrine");
+		strcpy(infostr, "Gethelgedom");
 		break;
 	case OBJ_CAULDRON:
-		strcpy(infostr, "Cauldron");
+		strcpy(infostr, "Gryta");
 		break;
 	case OBJ_MURKYFTN:
-		strcpy(infostr, "Murky Pool");
+		strcpy(infostr, "Grumlig Pöl");
 		break;
 	case OBJ_TEARFTN:
-		strcpy(infostr, "Fountain of Tears");
+		strcpy(infostr, "Tårarnas Fontän");
 		break;
 	case OBJ_STEELTOME:
-		strcpy(infostr, "Steel Tome");
+		strcpy(infostr, "Stålskrift");
 		break;
 	case OBJ_PEDISTAL:
-		strcpy(infostr, "Pedestal of Blood");
+		strcpy(infostr, "Blodets Piedestal");
 		break;
 	case OBJ_STORYBOOK:
 		strcpy(infostr, StoryBookName[object[i]._oVar3]);
 		break;
 	case OBJ_WEAPONRACK:
-		strcpy(infostr, "Weapon Rack");
+		strcpy(infostr, "Vapenställ");
 		break;
 	case OBJ_MUSHPATCH:
-		strcpy(infostr, "Mushroom Patch");
+		strcpy(infostr, "Svampfläck");
 		break;
 	case OBJ_LAZSTAND:
-		strcpy(infostr, "Vile Stand");
+		strcpy(infostr, "Uselt Ställ");
 		break;
 	case OBJ_SLAINHERO:
-		strcpy(infostr, "Slain Hero");
+		strcpy(infostr, "Dräpt Hjälte");
 		break;
 	}
 	if (plr[myplr]._pClass == PC_ROGUE) {
 		if (object[i]._oTrapFlag) {
-			sprintf(tempstr, "Trapped %s", infostr);
+			sprintf(tempstr, "Fångad %s", infostr);
 			strcpy(infostr, tempstr);
 			infoclr = COL_RED;
 		}

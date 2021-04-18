@@ -261,7 +261,7 @@ const ObjDataStruct AllObjects[] = {
 const char *const ObjMasterLoadList[] = {
 	"L1Braz",
 	"L1Doors",
-	"Lever",
+	"Spak",
 	"Chest1",
 	"Chest2",
 	"Banner",
@@ -296,7 +296,7 @@ const char *const ObjMasterLoadList[] = {
 	"BCase",
 	"BShelf",
 	"WeapStnd",
-	"Barrel",
+	"Tunna",
 	"Barrelex",
 	"LShrineG",
 	"RShrineG",
@@ -379,7 +379,7 @@ const char *ObjCryptLoadList[] = {
 const char *ObjHiveLoadList[] = {
 	"L1Braz",
 	"L1Doors",
-	"Lever",
+	"Spak",
 	"Chest1",
 	"Chest2",
 	"Banner",
