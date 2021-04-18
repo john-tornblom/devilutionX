@@ -39,7 +39,7 @@ enum item_misc_id OilMagic[] = {
 	IMISC_OILHARD,
 	IMISC_OILIMP,
 };
-char OilNames[10][25] = {
+const char* OilNames[10] = {
 	"Oil of Accuracy",
 	"Oil of Mastery",
 	"Oil of Sharpness",
